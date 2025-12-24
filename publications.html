@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Searchable database of GAERS publications (2015-2025) with advanced filtering and export capabilities">
+  <meta name="keywords" content="GAERS publications, epilepsy literature, research database, citations">
+  <title>GAERS Literature Database | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>GAERS Literature Database</h1>
+      <p>Comprehensive collection of GAERS research publications (2015-2025)</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Search & Filter Controls -->
+      <section>
+        <div class="card">
+          <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="card-title" style="margin-bottom: 0;">Search Publications</h2>
+            <button id="toggleFilters" class="btn btn-sm btn-secondary">
+              <span id="filterToggleIcon">▼</span> Advanced Filters
+            </button>
+          </div>
+          <div class="card-body">
+            <!-- Search Bar -->
+            <div class="search-bar">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by title, authors, abstract, journal, or takeaway..."
+                class="form-input"
+                aria-label="Search publications">
+              <button id="clearSearch" class="btn btn-secondary">Clear</button>
+            </div>
+
+            <!-- Advanced Filters (Collapsible) -->
+            <div id="filterBody" class="filter-section hidden">
+              <div class="grid grid-3">
+                <!-- Year Range -->
+                <div class="form-group">
+                  <label for="yearMin">Year (Min)</label>
+                  <input type="number" id="yearMin" class="form-input" min="2014" max="2025" placeholder="2014">
+                </div>
+                <div class="form-group">
+                  <label for="yearMax">Year (Max)</label>
+                  <input type="number" id="yearMax" class="form-input" min="2014" max="2025" placeholder="2025">
+                </div>
+
+                <!-- Quartile Filter -->
+                <div class="form-group">
+                  <label for="quartileFilter">Journal Quartile</label>
+                  <select id="quartileFilter" class="form-input">
+                    <option value="all">All Quartiles</option>
+                    <option value="1">Q1</option>
+                    <option value="2">Q2</option>
+                    <option value="3">Q3</option>
+                    <option value="4">Q4</option>
+                    <option value="unranked">Unranked</option>
+                  </select>
+                </div>
+
+                <!-- Study Type Filter -->
+                <div class="form-group">
+                  <label for="studyTypeFilter">Study Type</label>
+                  <select id="studyTypeFilter" class="form-input">
+                    <option value="all">All Types</option>
+                    <option value="non-rct experimental">Experimental</option>
+                    <option value="systematic review">Systematic Review</option>
+                    <option value="non-rct observational study">Observational Study</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <!-- Citation Filter -->
+                <div class="form-group">
+                  <label for="citationMin">Min. Citations</label>
+                  <input type="number" id="citationMin" class="form-input" min="0" placeholder="0">
+                </div>
+
+                <!-- Journal Filter -->
+                <div class="form-group">
+                  <label for="journalFilter">Journal Name</label>
+                  <input type="text" id="journalFilter" class="form-input" placeholder="Filter by journal">
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <button id="resetFilters" class="btn btn-secondary">Reset All Filters</button>
+              </div>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="export-controls mt-2">
+              <button id="exportCSV" class="btn btn-primary">Export to CSV</button>
+              <button id="exportBibTeX" class="btn btn-primary">Export to BibTeX</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Count -->
+      <section>
+        <div class="alert alert-info">
+          <p id="resultsCount" style="margin: 0; font-weight: 500;">Loading publications...</p>
+        </div>
+      </section>
+
+      <!-- Results Table -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Results</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="publicationsTable" class="data-table">
+                <thead>
+                  <tr>
+                    <th data-sortable data-column="title">Title</th>
+                    <th data-sortable data-column="authors">Authors</th>
+                    <th data-sortable data-column="year" data-type="number">Year</th>
+                    <th data-sortable data-column="journal">Journal</th>
+                    <th data-sortable data-column="sjr_quartile">Q</th>
+                    <th data-sortable data-column="citations" data-type="number">Citations</th>
+                    <th data-sortable data-column="study_type">Type</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="8" style="text-align: center; padding: 3rem;">
+                      <div class="spinner" style="margin: 0 auto;"></div>
+                      <p style="margin-top: 1rem; color: var(--text-secondary);">Loading publications...</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div id="paginationControls" class="pagination-controls"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Publication Details Modal -->
+  <div id="publicationModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div id="modalContent" class="modal-content">
+        <!-- Modal content will be dynamically populated -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/publications.js"></script>
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

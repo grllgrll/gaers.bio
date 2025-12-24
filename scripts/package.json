@@ -1,0 +1,17 @@
+{
+  "name": "gaers-data-processing",
+  "version": "1.0.0",
+  "description": "Data processing scripts for GAERS research website",
+  "scripts": {
+    "convert-rnaseq": "node convert-rnaseq-data.js",
+    "convert-spatial": "node convert-spatial-data.js",
+    "convert-enrichment": "node convert-enrichment-data.js",
+    "build-gene-index": "node build-gene-database.js",
+    "build-all": "npm run convert-rnaseq && npm run convert-spatial && npm run convert-enrichment && npm run build-gene-index"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  },
+  "author": "Özkan Özdemir",
+  "license": "MIT"
+}

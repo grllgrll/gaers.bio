@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search and explore 3,611 genes across bulk RNA-seq and spatial transcriptomics datasets">
+  <meta name="keywords" content="gene search, GAERS, RNA-seq, spatial transcriptomics, differential expression">
+  <title>Gene Search | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html" class="active">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Gene Search</h1>
+      <p>Search and explore 3,611 genes across all datasets</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Loading Status -->
+      <div id="loadingStatus" class="alert alert-info" style="display: none;">
+        Loading gene database...
+      </div>
+
+      <!-- Search & Filter Controls -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Search & Filter</h2>
+          </div>
+          <div class="card-body">
+            <!-- Search Input -->
+            <div class="form-group">
+              <label for="searchInput"><strong>Search Genes</strong></label>
+              <div class="search-bar-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-control"
+                  placeholder="Search by gene symbol, name, or Ensembl ID...">
+                <button id="clearSearch" class="btn btn-secondary">Clear</button>
+              </div>
+              <small class="form-text">Search is case-insensitive and matches partial text</small>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="mt-3">
+              <button class="btn btn-secondary" onclick="toggleFilters()">
+                <span id="filterToggleText">Show Filters</span> ▼
+              </button>
+              <button id="resetFilters" class="btn btn-secondary">Reset All Filters</button>
+              <button id="exportResults" class="btn btn-primary">Export Results to CSV</button>
+            </div>
+
+            <!-- Advanced Filters (Collapsible) -->
+            <div id="advancedFilters" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+              <div class="grid grid-2">
+                <!-- Regulation Filter -->
+                <div class="form-group">
+                  <label for="regulationFilter"><strong>Regulation</strong></label>
+                  <select id="regulationFilter" class="form-control">
+                    <option value="all">All (Up & Down)</option>
+                    <option value="up">Upregulated Only</option>
+                    <option value="down">Downregulated Only</option>
+                  </select>
+                </div>
+
+                <!-- P-value Threshold -->
+                <div class="form-group">
+                  <label for="pvalueThreshold"><strong>Max Adjusted P-value</strong></label>
+                  <input type="number" id="pvalueThreshold" class="form-control" value="1.0" min="0" max="1" step="0.01">
+                  <small class="form-text">Filter genes with adj.p ≤ threshold (1.0 = no filter)</small>
+                </div>
+
+                <!-- Log2FC Min -->
+                <div class="form-group">
+                  <label for="log2fcMin"><strong>Min Absolute Log2FC</strong></label>
+                  <input type="number" id="log2fcMin" class="form-control" placeholder="No minimum" step="0.1">
+                  <small class="form-text">Minimum |log2 fold change|</small>
+                </div>
+
+                <!-- Log2FC Max -->
+                <div class="form-group">
+                  <label for="log2fcMax"><strong>Max Absolute Log2FC</strong></label>
+                  <input type="number" id="log2fcMax" class="form-control" placeholder="No maximum" step="0.1">
+                  <small class="form-text">Maximum |log2 fold change|</small>
+                </div>
+              </div>
+
+              <!-- Dataset Filters -->
+              <div class="form-group mt-2">
+                <label><strong>Include Datasets</strong></label>
+                <div class="grid grid-2">
+                  <div>
+                    <label class="checkbox-label">
+                      <input type="checkbox" id="filter_bulk_rnaseq" checked>
+                      Bulk RNA-seq (Ga30 vs Ga15)
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox-label">
+                      <input type="checkbox" id="filter_spatial_p15" checked>
+                      Spatial Transcriptomics P15
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox-label">
+                      <input type="checkbox" id="filter_spatial_p30" checked>
+                      Spatial Transcriptomics P30
+                    </label>
+                  </div>
+                  <div>
+                    <label class="checkbox-label">
+                      <input type="checkbox" id="filter_seizure_gene" checked>
+                      Seizure-Related Genes
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Count -->
+      <section style="margin-top: 1rem;">
+        <div class="alert alert-info">
+          <strong id="resultsCount">Loading...</strong>
+        </div>
+      </section>
+
+      <!-- Results Table -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Search Results</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table id="geneTable">
+                <thead>
+                  <tr>
+                    <th data-sortable data-column="symbol" data-type="string">Gene Symbol</th>
+                    <th data-sortable data-column="name" data-type="string">Gene Name</th>
+                    <th data-sortable data-column="ensembl_id" data-type="string">Ensembl ID</th>
+                    <th>Regulation</th>
+                    <th data-sortable data-column="log2fc" data-type="number">Log2FC</th>
+                    <th data-sortable data-column="adj_p_val" data-type="number">Adj. P-value</th>
+                    <th>Datasets</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="8" style="text-align: center; padding: 2rem;">
+                      Loading gene data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div id="paginationContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Guide -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">How to Use Gene Search</h2>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h3>Search Features</h3>
+                <ul>
+                  <li><strong>Text Search:</strong> Type gene symbol (e.g., "Cacna1g"), gene name (e.g., "calcium channel"), or Ensembl ID</li>
+                  <li><strong>Regulation Filter:</strong> Show only upregulated or downregulated genes</li>
+                  <li><strong>Dataset Filter:</strong> Include/exclude specific datasets</li>
+                  <li><strong>Statistical Filters:</strong> Filter by p-value or fold change thresholds</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Table Features</h3>
+                <ul>
+                  <li><strong>Sortable Columns:</strong> Click column headers to sort (↑↓)</li>
+                  <li><strong>Pagination:</strong> Browse results with Previous/Next buttons</li>
+                  <li><strong>Details Button:</strong> View complete gene information and external links</li>
+                  <li><strong>Export:</strong> Download filtered results as CSV for further analysis</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-2">
+              <h4>Dataset Information</h4>
+              <ul>
+                <li><strong>Bulk RNA-seq:</strong> 593 DEGs from LCM-based bulk RNA-seq (Ga30 vs Ga15)</li>
+                <li><strong>Spatial P15:</strong> 1,079 DEGs from 10X Visium spatial transcriptomics at P15</li>
+                <li><strong>Spatial P30:</strong> 1,079 DEGs from 10X Visium spatial transcriptomics at P30</li>
+                <li><strong>Seizure Genes:</strong> 2,007 genes associated with seizure phenotype (HP:0001250)</li>
+                <li><strong>Total Unique Genes:</strong> 3,611 genes across all datasets</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/gene-search.js"></script>
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+
+    // Toggle advanced filters
+    function toggleFilters() {
+      const filtersDiv = document.getElementById('advancedFilters');
+      const toggleText = document.getElementById('filterToggleText');
+
+      if (filtersDiv.style.display === 'none') {
+        filtersDiv.style.display = 'block';
+        toggleText.textContent = 'Hide Filters';
+      } else {
+        filtersDiv.style.display = 'none';
+        toggleText.textContent = 'Show Filters';
+      }
+    }
+
+    // Initialize gene search engine on page load
+    let geneSearchEngine;
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      geneSearchEngine = new GeneSearchEngine();
+      window.geneSearchEngine = geneSearchEngine; // Make globally accessible
+      await geneSearchEngine.initialize();
+    });
+  </script>
+
+  <!-- Additional CSS for checkbox labels -->
+  <style>
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.25rem 0;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #212529;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    .form-text {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+
+    .badge-info {
+      background-color: #0dcaf0;
+      color: #000;
+    }
+
+    .badge-warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+  </style>
+</body>
+</html>

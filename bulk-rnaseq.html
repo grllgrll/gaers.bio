@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bulk RNA-seq analysis of GAERS epilepsy model - 593 differentially expressed genes">
+  <meta name="keywords" content="GAERS, RNA-seq, DESeq2, differential expression, epilepsy">
+  <title>Bulk RNA-seq Analysis | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html" class="active">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Bulk RNA-seq Analysis</h1>
+      <p>LCM-based Transcriptomic Profiling of Epileptogenesis</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Study Overview -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Study Design</h2>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h3>Experimental Approach</h3>
+                <p>Laser capture microdissection (LCM) combined with bulk RNA-seq was used to profile transcriptional changes during the critical epileptogenic window in the GAERS model.</p>
+                <ul>
+                  <li><strong>Comparison:</strong> Ga30 (P30, seizure-onset) vs Ga15 (P15, pre-seizure)</li>
+                  <li><strong>Sample Size:</strong> 5 Ga30 samples, 2 Ga15 samples</li>
+                  <li><strong>Library Prep:</strong> Takara SMARTer Stranded Total RNA-Seq Kit v3</li>
+                  <li><strong>Sequencing:</strong> Illumina platform</li>
+                  <li><strong>Analysis:</strong> DESeq2 differential expression</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Key Findings</h3>
+                <div class="alert alert-info">
+                  <p><strong>593 Differentially Expressed Genes</strong></p>
+                  <ul>
+                    <li>560 upregulated (94.4%)</li>
+                    <li>33 downregulated (5.6%)</li>
+                    <li>Thresholds: padj < 0.1, |log2FC| > 0.5</li>
+                  </ul>
+                </div>
+                <p><strong>Biological Significance:</strong> The predominant upregulation indicates active neuronal maturation and circuit development during the transition from pre-seizure to seizure-prone state.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary Statistics -->
+      <section>
+        <h2>Summary Statistics</h2>
+        <div class="grid grid-4">
+          <div class="stat-card card">
+            <span class="stat-number">593</span>
+            <span class="stat-label">Significant DEGs</span>
+          </div>
+          <div class="stat-card card" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
+            <span class="stat-number">560</span>
+            <span class="stat-label">Upregulated</span>
+          </div>
+          <div class="stat-card card" style="background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);">
+            <span class="stat-number">33</span>
+            <span class="stat-label">Downregulated</span>
+          </div>
+          <div class="stat-card card" style="background: linear-gradient(135deg, #198754 0%, #157347 100%);">
+            <span class="stat-number">3,700</span>
+            <span class="stat-label">Genes Tested</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Volcano Plot -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Volcano Plot</h2>
+            <p class="card-subtitle">Differential Expression Overview (Ga30 vs Ga15)</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="volcanoPlot"></canvas>
+            </div>
+            <p class="mt-2"><small><strong>Interpretation:</strong> Each point represents a gene. Red points are significantly upregulated, blue points are significantly downregulated. Distance from center indicates magnitude of change and statistical significance.</small></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top DEGs -->
+      <section>
+        <h2>Top Differentially Expressed Genes</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Top 20 Upregulated Genes</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="topUpChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Top 20 Downregulated Genes</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="topDownChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Genes Table -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Top 10 Most Significant Genes</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table id="topGenesTable">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Gene Symbol</th>
+                    <th>Gene Name</th>
+                    <th>Log2FC</th>
+                    <th>Adj. P-value</th>
+                    <th>Regulation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GO Enrichment -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">GO Enrichment Analysis</h2>
+            <p class="card-subtitle">Top Enriched Biological Processes</p>
+          </div>
+          <div class="card-body">
+            <div id="enrichmentLoadStatus" class="alert alert-info">
+              Loading enrichment data...
+            </div>
+            <div class="chart-container" style="display: none;" id="enrichmentChartContainer">
+              <canvas id="enrichmentPlot"></canvas>
+            </div>
+            <div class="mt-3">
+              <h4>Key Enriched Pathways</h4>
+              <div class="grid grid-2">
+                <div>
+                  <p><strong>Synaptic Organization:</strong></p>
+                  <ul>
+                    <li>Cell junction maintenance</li>
+                    <li>Postsynaptic density organization</li>
+                    <li>Regulation of synaptic plasticity</li>
+                  </ul>
+                </div>
+                <div>
+                  <p><strong>Calcium & Ion Channels:</strong></p>
+                  <ul>
+                    <li>Calcium homeostasis</li>
+                    <li>IP3 signaling</li>
+                    <li>Voltage-gated ion channels</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Biological Interpretation -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Biological Interpretation</h2>
+          </div>
+          <div class="card-body">
+            <h3>Major Findings</h3>
+            <ol>
+              <li>
+                <strong>Predominant Upregulation (94.4%):</strong> The overwhelming majority of DEGs show increased expression at P30, indicating active transcriptional programs associated with neuronal maturation and circuit development during the epileptogenic window.
+              </li>
+              <li>
+                <strong>Synaptic Plasticity & Organization:</strong> Strong enrichment in postsynaptic density organization, synaptic plasticity, and maintenance of synaptic structures reflects critical circuit refinement occurring as GAERS rats transition to seizure-prone state.
+              </li>
+              <li>
+                <strong>Calcium Signaling Dysregulation:</strong> Enrichment in calcium homeostasis and ion channel genes, including T-type calcium channels (Cacna1g, Cacna1h), aligns with known mechanisms of absence seizure generation in thalamocortical circuits.
+              </li>
+              <li>
+                <strong>Glutamatergic Transmission:</strong> Upregulation of NMDA receptor components and glutamatergic signaling genes consistent with thalamocortical hyperexcitability in GAERS.
+              </li>
+            </ol>
+
+            <h3 class="mt-3">Clinical Relevance</h3>
+            <p>These transcriptional changes identify potential therapeutic targets for preventing or modulating absence seizure development. The prominent synaptic and ion channel dysregulation provides molecular evidence for circuit-level dysfunction underlying epileptogenesis.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Download -->
+      <section>
+        <div class="alert alert-info">
+          <h3>Download Data</h3>
+          <p>Access the complete differential expression results and processed data:</p>
+          <div class="mt-2">
+            <a href="downloads.html" class="btn btn-primary">Go to Downloads Page →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/vendor/chart.min.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+
+    // Load and visualize RNA-seq data
+    let rnaseqData = null;
+    let enrichmentData = null;
+
+    async function loadData() {
+      try {
+        // Load RNA-seq DEGs
+        const rnaseqResponse = await fetch('assets/data/rnaseq-degs.json');
+        if (!rnaseqResponse.ok) {
+          throw new Error(`HTTP error! status: ${rnaseqResponse.status} - Cannot load RNA-seq data`);
+        }
+        const rnaseqJson = await rnaseqResponse.json();
+        rnaseqData = rnaseqJson.genes;
+
+        // Load enrichment data
+        const enrichmentResponse = await fetch('assets/data/enrichment-data.json');
+        if (!enrichmentResponse.ok) {
+          throw new Error(`HTTP error! status: ${enrichmentResponse.status} - Cannot load enrichment data`);
+        }
+        enrichmentData = await enrichmentResponse.json();
+
+        // Validate data
+        if (!rnaseqData || !enrichmentData) {
+          throw new Error('Data files loaded but missing required data');
+        }
+
+        // Create visualizations
+        createVisualizations();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        showDataLoadError(error);
+      }
+    }
+
+    function showDataLoadError(error) {
+      const errorMessage = error.message || 'Unknown error';
+
+      // Check if it's likely a CORS/file:// protocol issue
+      const isCORSError = errorMessage.includes('Failed to fetch') ||
+                          errorMessage.includes('NetworkError') ||
+                          window.location.protocol === 'file:';
+
+      let userMessage = '<div class="alert alert-danger" style="margin: 2rem;">';
+      userMessage += '<h3>⚠️ Error Loading Data</h3>';
+
+      if (isCORSError) {
+        userMessage += '<p><strong>Issue:</strong> Data files cannot be loaded when opening HTML files directly.</p>';
+        userMessage += '<p><strong>Solution:</strong> Please use a local web server:</p>';
+        userMessage += '<pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px;">';
+        userMessage += 'cd /Users/ozkanozdemir/Sandbox/gaers.bio/gaers-website\n';
+        userMessage += 'python3 -m http.server 8000\n';
+        userMessage += '# Then open: http://localhost:8000/bulk-rnaseq.html';
+        userMessage += '</pre>';
+      } else {
+        userMessage += `<p><strong>Error:</strong> ${errorMessage}</p>`;
+        userMessage += '<p>Please check the browser console for details.</p>';
+      }
+
+      userMessage += '</div>';
+
+      // Display error in the page
+      const container = document.querySelector('main .container');
+      if (container) {
+        container.innerHTML = userMessage + container.innerHTML;
+      }
+    }
+
+    function createVisualizations() {
+      if (!rnaseqData || rnaseqData.length === 0) {
+        console.error('No RNA-seq data available');
+        return;
+      }
+
+      // 1. Volcano Plot
+      createVolcanoPlot('volcanoPlot', rnaseqData, {
+        title: 'Differential Expression: Ga30 vs Ga15'
+      });
+
+      // 2. Top Upregulated Genes
+      const upGenes = rnaseqData.filter(g => g.regulation === 'up');
+      createTopDEGsBarChart('topUpChart', upGenes, {
+        direction: 'up',
+        limit: 20,
+        title: 'Top 20 Upregulated Genes'
+      });
+
+      // 3. Top Downregulated Genes
+      const downGenes = rnaseqData.filter(g => g.regulation === 'down');
+      createTopDEGsBarChart('topDownChart', downGenes, {
+        direction: 'down',
+        limit: 20,
+        title: 'Top 20 Downregulated Genes'
+      });
+
+      // 4. Top Genes Table
+      populateTopGenesTable();
+
+      // 5. Enrichment Plot
+      if (enrichmentData && enrichmentData.enrichment) {
+        const bpTerms = enrichmentData.enrichment.biological_process || [];
+        if (bpTerms.length > 0) {
+          document.getElementById('enrichmentLoadStatus').style.display = 'none';
+          document.getElementById('enrichmentChartContainer').style.display = 'block';
+          createEnrichmentDotPlot('enrichmentPlot', bpTerms, {
+            title: 'GO Biological Process Enrichment',
+            limit: 20
+          });
+        } else {
+          document.getElementById('enrichmentLoadStatus').innerHTML = '<p>No significant enrichment terms available (p.adjust < 0.05)</p>';
+        }
+      }
+    }
+
+    function populateTopGenesTable() {
+      const topGenes = [...rnaseqData]
+        .sort((a, b) => a.padj - b.padj)
+        .slice(0, 10);
+
+      const tbody = document.querySelector('#topGenesTable tbody');
+      tbody.innerHTML = '';
+
+      topGenes.forEach((gene, index) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td><code>${gene.symbol}</code></td>
+          <td style="max-width: 300px;">${gene.name || 'N/A'}</td>
+          <td>${gene.log2fc.toFixed(3)}</td>
+          <td>${gene.padj.toExponential(2)}</td>
+          <td><span class="badge badge-${gene.regulation}">${gene.regulation}</span></td>
+        `;
+      });
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

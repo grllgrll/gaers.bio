@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="10X Genomics Visium spatial transcriptomics analysis of GAERS epilepsy model">
+  <meta name="keywords" content="GAERS, spatial transcriptomics, 10X Genomics, Visium, epilepsy">
+  <title>Spatial Transcriptomics | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html" class="active">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Spatial Transcriptomics</h1>
+      <p>10X Genomics Visium Spatial Gene Expression Profiling</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Study Overview -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">10X Visium Technology</h2>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h3>Experimental Design</h3>
+                <p>Spatial transcriptomics using 10X Genomics Visium platform captures gene expression while preserving spatial context within brain tissue sections.</p>
+                <ul>
+                  <li><strong>Platform:</strong> 10X Genomics Visium Spatial Gene Expression</li>
+                  <li><strong>Samples:</strong> 8 total (4 P15, 4 P30)</li>
+                  <li><strong>Comparisons:</strong> GAERS vs Wistar at P15 and P30</li>
+                  <li><strong>Analysis:</strong> Limma differential expression</li>
+                  <li><strong>Resolution:</strong> 55 μm spot size, ~10 cells per spot</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Sample Groups</h3>
+                <div class="alert alert-info">
+                  <p><strong>GAERS (Epilepsy Model):</strong></p>
+                  <ul>
+                    <li>GA1-P15, GA1-P30</li>
+                    <li>GA2-P15, GA2-P30</li>
+                  </ul>
+                  <p class="mt-2"><strong>Wistar (Control):</strong></p>
+                  <ul>
+                    <li>WH1-P15, WH1-P30</li>
+                    <li>WH2-P15, WH2-P30</li>
+                    <li>WH3-P15, WH3-P30</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sample Overview -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Sample Overview</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sample ID</th>
+                    <th>Group</th>
+                    <th>Timepoint</th>
+                    <th>Phenotype</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>GA1-P15</code></td>
+                    <td>GAERS</td>
+                    <td>P15</td>
+                    <td>Pre-seizure</td>
+                    <td>GAERS rat, postnatal day 15</td>
+                  </tr>
+                  <tr>
+                    <td><code>GA1-P30</code></td>
+                    <td>GAERS</td>
+                    <td>P30</td>
+                    <td>Seizure-onset</td>
+                    <td>GAERS rat, postnatal day 30</td>
+                  </tr>
+                  <tr>
+                    <td><code>GA2-P15</code></td>
+                    <td>GAERS</td>
+                    <td>P15</td>
+                    <td>Pre-seizure</td>
+                    <td>GAERS rat, postnatal day 15</td>
+                  </tr>
+                  <tr>
+                    <td><code>GA2-P30</code></td>
+                    <td>GAERS</td>
+                    <td>P30</td>
+                    <td>Seizure-onset</td>
+                    <td>GAERS rat, postnatal day 30</td>
+                  </tr>
+                  <tr>
+                    <td><code>WH1-P15</code></td>
+                    <td>Wistar</td>
+                    <td>P15</td>
+                    <td>Control</td>
+                    <td>Wistar control, postnatal day 15</td>
+                  </tr>
+                  <tr>
+                    <td><code>WH1-P30</code></td>
+                    <td>Wistar</td>
+                    <td>P30</td>
+                    <td>Control</td>
+                    <td>Wistar control, postnatal day 30</td>
+                  </tr>
+                  <tr>
+                    <td><code>WH2-P15</code></td>
+                    <td>Wistar</td>
+                    <td>P15</td>
+                    <td>Control</td>
+                    <td>Wistar control, postnatal day 15</td>
+                  </tr>
+                  <tr>
+                    <td><code>WH2-P30</code></td>
+                    <td>Wistar</td>
+                    <td>P30</td>
+                    <td>Control</td>
+                    <td>Wistar control, postnatal day 30</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary Stats -->
+      <section>
+        <h2>Differential Expression Summary</h2>
+        <div class="grid grid-2">
+          <!-- P15 Stats -->
+          <div class="card">
+            <div class="card-header" style="background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%); color: white;">
+              <h3 class="card-title" style="color: white; margin: 0;">P15: GAERS vs Wistar</h3>
+            </div>
+            <div class="card-body">
+              <div class="grid grid-3">
+                <div class="stat-card card" style="background: white; color: #212529; box-shadow: none; border: 2px solid #e9ecef;">
+                  <span class="stat-number" style="color: #0066cc;">1,079</span>
+                  <span class="stat-label" style="color: #6c757d;">Total DEGs</span>
+                </div>
+                <div class="stat-card card" style="background: #dc3545;">
+                  <span class="stat-number">509</span>
+                  <span class="stat-label">Upregulated</span>
+                </div>
+                <div class="stat-card card" style="background: #0d6efd;">
+                  <span class="stat-number">570</span>
+                  <span class="stat-label">Downregulated</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- P30 Stats -->
+          <div class="card">
+            <div class="card-header" style="background: linear-gradient(135deg, #198754 0%, #157347 100%); color: white;">
+              <h3 class="card-title" style="color: white; margin: 0;">P30: GAERS vs Wistar</h3>
+            </div>
+            <div class="card-body">
+              <div class="grid grid-3">
+                <div class="stat-card card" style="background: white; color: #212529; box-shadow: none; border: 2px solid #e9ecef;">
+                  <span class="stat-number" style="color: #198754;">1,079</span>
+                  <span class="stat-label" style="color: #6c757d;">Total DEGs</span>
+                </div>
+                <div class="stat-card card" style="background: #dc3545;">
+                  <span class="stat-number">565</span>
+                  <span class="stat-label">Upregulated</span>
+                </div>
+                <div class="stat-card card" style="background: #0d6efd;">
+                  <span class="stat-number">514</span>
+                  <span class="stat-label">Downregulated</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- P15 Analysis -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">P15 Comparison: GAERS vs Wistar</h2>
+            <p class="card-subtitle">Pre-seizure developmental stage</p>
+          </div>
+          <div class="card-body">
+            <!-- Volcano Plot -->
+            <div class="chart-container" style="margin-bottom: 2rem;">
+              <canvas id="volcanoPlotP15"></canvas>
+            </div>
+
+            <!-- Top DEGs -->
+            <h3>Top Differentially Expressed Genes (P15)</h3>
+            <div class="grid grid-2 mt-2">
+              <div class="chart-container">
+                <canvas id="topP15Up"></canvas>
+              </div>
+              <div class="chart-container">
+                <canvas id="topP15Down"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- P30 Analysis -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">P30 Comparison: GAERS vs Wistar</h2>
+            <p class="card-subtitle">Seizure-onset stage</p>
+          </div>
+          <div class="card-body">
+            <!-- Volcano Plot -->
+            <div class="chart-container" style="margin-bottom: 2rem;">
+              <canvas id="volcanoPlotP30"></canvas>
+            </div>
+
+            <!-- Top DEGs -->
+            <h3>Top Differentially Expressed Genes (P30)</h3>
+            <div class="grid grid-2 mt-2">
+              <div class="chart-container">
+                <canvas id="topP30Up"></canvas>
+              </div>
+              <div class="chart-container">
+                <canvas id="topP30Down"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Biological Interpretation -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Spatial Context & Interpretation</h2>
+          </div>
+          <div class="card-body">
+            <h3>Key Observations</h3>
+            <ol>
+              <li>
+                <strong>Temporal Progression:</strong> Both P15 and P30 show extensive transcriptional differences between GAERS and Wistar, with over 1,000 DEGs at each timepoint. This indicates early and persistent molecular dysregulation in the GAERS model.
+              </li>
+              <li>
+                <strong>Balanced Regulation at P15:</strong> The P15 comparison shows relatively balanced up/down regulation (509 up, 570 down), suggesting complex developmental differences between GAERS and control.
+              </li>
+              <li>
+                <strong>Shift at P30:</strong> By P30, the ratio shifts slightly toward upregulation (565 up, 514 down), potentially reflecting circuit maturation and seizure-associated changes.
+              </li>
+              <li>
+                <strong>Spatial Resolution:</strong> The Visium platform preserves tissue architecture, enabling identification of region-specific gene expression patterns critical for understanding thalamocortical circuit dysfunction.
+              </li>
+            </ol>
+
+            <h3 class="mt-3">Spatial Advantages</h3>
+            <p>Unlike bulk RNA-seq, spatial transcriptomics reveals:</p>
+            <ul>
+              <li>Region-specific dysregulation in thalamus vs cortex</li>
+              <li>Cell type composition differences between GAERS and controls</li>
+              <li>Spatial organization of seizure-related gene expression</li>
+              <li>Anatomically-resolved molecular pathways</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Advanced Analysis with Loupe Browser -->
+      <section>
+        <div class="card" style="border: 3px solid #0066cc; background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);">
+          <div class="card-header" style="background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); color: white; border: none;">
+            <h2 class="card-title" style="color: white; margin: 0;">Go Beyond Web Visualizations</h2>
+            <p style="color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0; font-size: 1rem;">Explore spatial data interactively with 10X Genomics Loupe Browser</p>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h3 style="color: #0066cc;">What Loupe Browser Adds</h3>
+                <p>While our web visualizations provide quick insights, Loupe Browser unlocks the full power of spatial transcriptomics:</p>
+                <ul style="line-height: 1.8;">
+                  <li><strong>Interactive Tissue Maps:</strong> Overlay gene expression on H&E tissue images</li>
+                  <li><strong>Query Any Gene:</strong> Search and visualize 20,000+ genes on demand</li>
+                  <li><strong>Custom Regions:</strong> Select specific brain regions and compare expression</li>
+                  <li><strong>Spatial Clustering:</strong> Discover region-specific expression patterns</li>
+                  <li><strong>Differential Expression:</strong> Compare cortex vs thalamus, or custom selections</li>
+                  <li><strong>Publication Figures:</strong> Export high-resolution images</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="card" style="background: white; border: 2px solid #e3f2fd;">
+                  <div class="card-body">
+                    <h3 style="color: #0066cc; margin-top: 0;">Available Datasets</h3>
+
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #0d6efd;">
+                      <h4 style="margin-top: 0; color: #0d6efd;">P15 Pre-Seizure</h4>
+                      <p style="margin-bottom: 0; font-size: 0.9rem;">Baseline spatial expression before seizure onset (ga2p15_2)</p>
+                      <p style="margin: 0.5rem 0 0 0;"><span class="file-size-badge">275 MB</span></p>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #198754;">
+                      <h4 style="margin-top: 0; color: #198754;">P30 Seizure-Onset</h4>
+                      <p style="margin-bottom: 0; font-size: 0.9rem;">Spatial expression at absence seizure onset (ga1p30_2)</p>
+                      <p style="margin: 0.5rem 0 0 0;"><span class="file-size-badge">328 MB</span></p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                      <a href="#loupe-download" class="btn btn-primary btn-block">
+                        Download .cloupe Files →
+                      </a>
+                      <a href="#loupe-installation" class="btn btn-secondary btn-block" style="margin-top: 0.5rem;">
+                        Installation Guide
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-2" style="border-left: 4px solid #0066cc;">
+              <h4 style="margin-top: 0;">Hybrid Approach</h4>
+              <p style="margin-bottom: 0;">Our website provides fast, pre-computed visualizations for quick data exploration. For in-depth spatial analysis, custom queries, and publication-quality figures, download the .cloupe files and use Loupe Browser's full suite of interactive tools.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Detailed Loupe Browser Guide -->
+      <section id="loupe-browser-guide">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Complete Loupe Browser Guide</h2>
+            <p class="card-subtitle">Download, install, and explore spatial data interactively</p>
+          </div>
+          <div class="card-body">
+
+            <!-- Download .cloupe Files -->
+            <h3 id="loupe-download">Download GAERS Spatial Data (.cloupe files)</h3>
+            <div class="grid grid-2 mt-2">
+              <!-- P15 Card -->
+              <div class="card" style="border-left: 4px solid #0d6efd;">
+                <div class="card-header">
+                  <h4>P15 Pre-Seizure (ga2p15_2)</h4>
+                </div>
+                <div class="card-body">
+                  <p><strong>File:</strong> GAERS_P15_PreSeizure.cloupe</p>
+                  <p><strong>Size:</strong> 275 MB</p>
+                  <p><strong>Contains:</strong></p>
+                  <ul>
+                    <li>~5,000 spatial spots</li>
+                    <li>20,000+ genes</li>
+                    <li>H&E tissue image</li>
+                    <li>Spatial coordinates</li>
+                  </ul>
+                  <a href="downloads/loupe-browser/GAERS_P15_PreSeizure.cloupe" class="btn btn-primary btn-block" download>
+                    Download P15 Data
+                  </a>
+                  <details class="mt-2">
+                    <summary>File Verification</summary>
+                    <p><code>MD5: 75165a5804a3ccfffa72af6f1232de4f</code></p>
+                    <p>Use to verify download integrity</p>
+                  </details>
+                </div>
+              </div>
+
+              <!-- P30 Card -->
+              <div class="card" style="border-left: 4px solid #198754;">
+                <div class="card-header">
+                  <h4>P30 Seizure-Onset (ga1p30_2)</h4>
+                </div>
+                <div class="card-body">
+                  <p><strong>File:</strong> GAERS_P30_SeizureOnset.cloupe</p>
+                  <p><strong>Size:</strong> 328 MB</p>
+                  <p><strong>Contains:</strong></p>
+                  <ul>
+                    <li>~5,000 spatial spots</li>
+                    <li>20,000+ genes</li>
+                    <li>H&E tissue image</li>
+                    <li>Spatial coordinates</li>
+                  </ul>
+                  <a href="downloads/loupe-browser/GAERS_P30_SeizureOnset.cloupe" class="btn btn-success btn-block" download>
+                    Download P30 Data
+                  </a>
+                  <details class="mt-2">
+                    <summary>File Verification</summary>
+                    <p><code>MD5: 011b9ca08f1b38f4e8bc3b9de6193f03</code></p>
+                    <p>Use to verify download integrity</p>
+                  </details>
+                </div>
+              </div>
+            </div>
+
+            <!-- Installation & Setup -->
+            <h3 id="loupe-installation" class="mt-4">Installation & Setup</h3>
+            <div class="grid grid-3 mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <h4>1. Download Loupe Browser</h4>
+                  <p>Get the free desktop application from 10X Genomics</p>
+                  <a href="https://www.10xgenomics.com/support/software/loupe-browser/downloads" target="_blank" class="btn btn-outline-primary btn-sm">
+                    10X Genomics Downloads
+                  </a>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h4>2. Install</h4>
+                  <p><strong>Available for:</strong></p>
+                  <ul>
+                    <li>Windows 10/11</li>
+                    <li>macOS 10.14+</li>
+                    <li>Linux (Ubuntu, CentOS)</li>
+                  </ul>
+                  <p><strong>Requirements:</strong> 8GB RAM minimum, 16GB recommended</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h4>3. Load Data</h4>
+                  <ol>
+                    <li>Launch Loupe Browser</li>
+                    <li>File → Open</li>
+                    <li>Select .cloupe file</li>
+                    <li>Start exploring!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- Example Workflows -->
+            <h3 class="mt-4">Example Workflows for GAERS Data</h3>
+
+            <div class="card mt-2">
+              <div class="card-header">
+                <h4>Workflow 1: Visualize Seizure-Related Genes</h4>
+              </div>
+              <div class="card-body">
+                <ol>
+                  <li>Open <code>GAERS_P30_SeizureOnset.cloupe</code></li>
+                  <li>In Gene Expression panel, search for: <strong>Scn1a</strong></li>
+                  <li>View spatial expression pattern on tissue section</li>
+                  <li>Compare cortex vs thalamus expression levels</li>
+                  <li>Add more genes: <strong>Cacna1g</strong>, <strong>Gabrb3</strong></li>
+                  <li>Export high-resolution images for publication</li>
+                </ol>
+                <p class="alert alert-info">
+                  <strong>Tip:</strong> Use the split-view feature to compare multiple genes side-by-side
+                </p>
+              </div>
+            </div>
+
+            <div class="card mt-2">
+              <div class="card-header">
+                <h4>Workflow 2: Compare Brain Regions (Cortex vs Thalamus)</h4>
+              </div>
+              <div class="card-body">
+                <ol>
+                  <li>Open either P15 or P30 file</li>
+                  <li>In Tissue Viewer, use <strong>Lasso Tool</strong> to select cortex spots</li>
+                  <li>Right-click → "Create Cluster" → Name: "Cortex"</li>
+                  <li>Repeat for thalamus region</li>
+                  <li>Go to Differential Expression panel</li>
+                  <li>Select: Cortex vs Thalamus</li>
+                  <li>View top differentially expressed genes</li>
+                  <li>Export as CSV for further analysis</li>
+                </ol>
+                <p class="alert alert-info">
+                  <strong>Tip:</strong> Use the histogram in Tissue Viewer to validate region selection
+                </p>
+              </div>
+            </div>
+
+            <div class="card mt-2">
+              <div class="card-header">
+                <h4>Workflow 3: Temporal Comparison (P15 vs P30)</h4>
+              </div>
+              <div class="card-body">
+                <ol>
+                  <li>Open <code>GAERS_P15_PreSeizure.cloupe</code></li>
+                  <li>Search for a gene of interest (e.g., <strong>Gad1</strong>)</li>
+                  <li>Take screenshot or export image</li>
+                  <li>Close and open <code>GAERS_P30_SeizureOnset.cloupe</code></li>
+                  <li>Search for the same gene</li>
+                  <li>Compare spatial patterns between timepoints</li>
+                  <li>Note changes in expression levels and spatial distribution</li>
+                </ol>
+                <p class="alert alert-warning">
+                  <strong>Note:</strong> Loupe Browser cannot overlay multiple samples simultaneously. Use side-by-side comparison of exported images.
+                </p>
+              </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <h3 class="mt-4">Troubleshooting</h3>
+
+            <details class="mt-2">
+              <summary><strong>Loupe Browser won't open .cloupe file</strong></summary>
+              <div style="padding: 1rem; background: #f8f9fa; margin-top: 0.5rem;">
+                <p><strong>Possible solutions:</strong></p>
+                <ul>
+                  <li>Ensure you have the latest Loupe Browser version (check 10X website)</li>
+                  <li>Verify file downloaded completely (check file size: P15=275MB, P30=328MB)</li>
+                  <li>Verify file integrity using MD5 checksum</li>
+                  <li>Try re-downloading the file</li>
+                  <li>Check disk space (need ~1GB free for temporary files)</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="mt-2">
+              <summary><strong>Application is slow or crashing</strong></summary>
+              <div style="padding: 1rem; background: #f8f9fa; margin-top: 0.5rem;">
+                <p><strong>Possible solutions:</strong></p>
+                <ul>
+                  <li>Close other memory-intensive applications</li>
+                  <li>Ensure at least 8GB RAM available (16GB recommended)</li>
+                  <li>Reduce number of genes displayed simultaneously</li>
+                  <li>Disable real-time rendering in preferences if available</li>
+                  <li>Restart Loupe Browser</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="mt-2">
+              <summary><strong>Can't find a specific gene</strong></summary>
+              <div style="padding: 1rem; background: #f8f9fa; margin-top: 0.5rem;">
+                <p><strong>Possible solutions:</strong></p>
+                <ul>
+                  <li>Gene symbols are case-sensitive - try different capitalizations</li>
+                  <li>Try alternative gene names (e.g., "Gad1" vs "GAD1" vs "gad1")</li>
+                  <li>Use Ensembl ID instead of symbol</li>
+                  <li>Check our <a href="gene-search.html">Gene Search page</a> to verify gene names in dataset</li>
+                  <li>Gene might be filtered out due to low expression (check filtering settings)</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="mt-2">
+              <summary><strong>How to verify file integrity (MD5 checksum)</strong></summary>
+              <div style="padding: 1rem; background: #f8f9fa; margin-top: 0.5rem;">
+                <p><strong>On macOS/Linux:</strong></p>
+                <pre><code>md5sum GAERS_P15_PreSeizure.cloupe
+md5sum GAERS_P30_SeizureOnset.cloupe</code></pre>
+
+                <p><strong>On Windows (PowerShell):</strong></p>
+                <pre><code>Get-FileHash GAERS_P15_PreSeizure.cloupe -Algorithm MD5
+Get-FileHash GAERS_P30_SeizureOnset.cloupe -Algorithm MD5</code></pre>
+
+                <p>Compare output to checksums listed in download cards above.</p>
+              </div>
+            </details>
+
+            <details class="mt-2">
+              <summary><strong>Can I use Loupe Browser offline?</strong></summary>
+              <div style="padding: 1rem; background: #f8f9fa; margin-top: 0.5rem;">
+                <p><strong>Yes!</strong> Once installed, Loupe Browser works completely offline.</p>
+                <ul>
+                  <li>No internet connection required after installation</li>
+                  <li>All analysis runs locally on your computer</li>
+                  <li>Data never leaves your machine</li>
+                  <li>Perfect for secure/air-gapped environments</li>
+                </ul>
+              </div>
+            </details>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CSV Downloads Section -->
+      <section id="csv-downloads">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Summary Data Downloads (CSV)</h2>
+            <p class="card-subtitle">Download curated summary tables for quick analysis and integration</p>
+          </div>
+          <div class="card-body">
+
+            <div class="grid grid-3 mt-2">
+
+              <!-- P15 Top DEGs CSV -->
+              <div class="card" style="border-left: 4px solid #0d6efd;">
+                <div class="card-body">
+                  <h4>P15 Top DEGs</h4>
+                  <p>Top 50 differentially expressed genes at P15 timepoint</p>
+                  <ul>
+                    <li>25 upregulated genes (highest logFC)</li>
+                    <li>25 downregulated genes (lowest logFC)</li>
+                    <li>Full statistics included</li>
+                  </ul>
+                  <a href="downloads/spatial/spatial-p15-top-degs.csv" download class="btn btn-primary btn-block mt-2">
+                    Download P15 Top DEGs CSV
+                  </a>
+                  <p class="text-muted mt-2"><small>~5 KB | 51 rows (header + 50 genes)</small></p>
+                </div>
+              </div>
+
+              <!-- P30 Top DEGs CSV -->
+              <div class="card" style="border-left: 4px solid #198754;">
+                <div class="card-body">
+                  <h4>P30 Top DEGs</h4>
+                  <p>Top 50 differentially expressed genes at P30 timepoint</p>
+                  <ul>
+                    <li>25 upregulated genes (highest logFC)</li>
+                    <li>25 downregulated genes (lowest logFC)</li>
+                    <li>Full statistics included</li>
+                  </ul>
+                  <a href="downloads/spatial/spatial-p30-top-degs.csv" download class="btn btn-success btn-block mt-2">
+                    Download P30 Top DEGs CSV
+                  </a>
+                  <p class="text-muted mt-2"><small>~5 KB | 51 rows (header + 50 genes)</small></p>
+                </div>
+              </div>
+
+              <!-- Summary Statistics CSV -->
+              <div class="card" style="border-left: 4px solid #ffc107;">
+                <div class="card-body">
+                  <h4>Summary Statistics</h4>
+                  <p>Comparison table: P15 vs P30 overview</p>
+                  <ul>
+                    <li>Total DEGs per timepoint</li>
+                    <li>Up/down regulation counts</li>
+                    <li>Mean fold-changes</li>
+                  </ul>
+                  <a href="downloads/spatial/spatial-summary-statistics.csv" download class="btn btn-warning btn-block mt-2" style="color: #212529;">
+                    Download Summary Statistics CSV
+                  </a>
+                  <p class="text-muted mt-2"><small>~1 KB | 3 rows (header + P15 + P30)</small></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CSV Format Info -->
+            <div class="alert alert-info mt-3">
+              <h4>CSV Column Descriptions</h4>
+              <p><strong>Top DEGs files contain:</strong></p>
+              <ul>
+                <li><code>Symbol</code> - Gene symbol</li>
+                <li><code>Gene_Name</code> - Full gene name</li>
+                <li><code>logFC</code> - Log2 fold change (GAERS vs Wistar)</li>
+                <li><code>Average_Expression</code> - Mean expression level</li>
+                <li><code>t_Statistic</code> - T-test statistic</li>
+                <li><code>P_Value</code> - Raw p-value</li>
+                <li><code>Adjusted_P_Value</code> - FDR-adjusted p-value</li>
+                <li><code>Regulation</code> - "Up" or "Down"</li>
+              </ul>
+              <p class="mt-2"><strong>Summary statistics file contains:</strong></p>
+              <ul>
+                <li><code>Timepoint</code>, <code>Total_DEGs</code>, <code>Upregulated</code>, <code>Downregulated</code></li>
+                <li><code>Percent_Up</code>, <code>Percent_Down</code>, <code>Mean_logFC_Up</code>, <code>Mean_logFC_Down</code></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Download -->
+      <section>
+        <div class="alert alert-info">
+          <h3>Access Spatial Data</h3>
+          <p>Download complete differential expression results and spatial coordinates:</p>
+          <div class="mt-2">
+            <a href="downloads.html" class="btn btn-primary">Go to Downloads Page →</a>
+            <a href="gene-search.html" class="btn btn-secondary">Search Genes →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/vendor/chart.min.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+
+    // Load and visualize spatial data
+    let spatialP15Data = null;
+    let spatialP30Data = null;
+
+    async function loadData() {
+      try {
+        // Load P15 spatial DEGs
+        const p15Response = await fetch('assets/data/spatial-p15-degs.json');
+        if (!p15Response.ok) {
+          throw new Error(`HTTP error! status: ${p15Response.status} - Cannot load P15 data`);
+        }
+        const p15Json = await p15Response.json();
+        spatialP15Data = p15Json.genes;
+
+        // Load P30 spatial DEGs
+        const p30Response = await fetch('assets/data/spatial-p30-degs.json');
+        if (!p30Response.ok) {
+          throw new Error(`HTTP error! status: ${p30Response.status} - Cannot load P30 data`);
+        }
+        const p30Json = await p30Response.json();
+        spatialP30Data = p30Json.genes;
+
+        // Validate data
+        if (!spatialP15Data || !spatialP30Data) {
+          throw new Error('Data files loaded but missing required gene data');
+        }
+
+        // Create visualizations
+        createVisualizations();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        showDataLoadError(error);
+      }
+    }
+
+    function showDataLoadError(error) {
+      const errorMessage = error.message || 'Unknown error';
+
+      // Check if it's likely a CORS/file:// protocol issue
+      const isCORSError = errorMessage.includes('Failed to fetch') ||
+                          errorMessage.includes('NetworkError') ||
+                          window.location.protocol === 'file:';
+
+      let userMessage = '<div class="alert alert-danger" style="margin: 2rem;">';
+      userMessage += '<h3>⚠️ Error Loading Spatial Data</h3>';
+
+      if (isCORSError) {
+        userMessage += '<p><strong>Issue:</strong> Data files cannot be loaded when opening HTML files directly.</p>';
+        userMessage += '<p><strong>Solution:</strong> Please use a local web server:</p>';
+        userMessage += '<pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px;">';
+        userMessage += 'cd /Users/ozkanozdemir/Sandbox/gaers.bio/gaers-website\n';
+        userMessage += 'python3 -m http.server 8000\n';
+        userMessage += '# Then open: http://localhost:8000/spatial-transcriptomics.html';
+        userMessage += '</pre>';
+      } else {
+        userMessage += `<p><strong>Error:</strong> ${errorMessage}</p>`;
+        userMessage += '<p>Please check the browser console for details.</p>';
+      }
+
+      userMessage += '</div>';
+
+      // Display error in the page
+      const container = document.querySelector('main .container');
+      if (container) {
+        container.innerHTML = userMessage + container.innerHTML;
+      }
+    }
+
+    function createVisualizations() {
+      if (!spatialP15Data || !spatialP30Data) {
+        console.error('Spatial data not available');
+        return;
+      }
+
+      // P15 Visualizations
+      createVolcanoPlot('volcanoPlotP15', spatialP15Data, {
+        title: 'P15: GAERS vs Wistar (1,079 DEGs)'
+      });
+
+      const p15Up = spatialP15Data.filter(g => g.regulation === 'up');
+      const p15Down = spatialP15Data.filter(g => g.regulation === 'down');
+
+      createTopDEGsBarChart('topP15Up', p15Up, {
+        direction: 'up',
+        limit: 10,
+        title: 'Top 10 Upregulated (P15)'
+      });
+
+      createTopDEGsBarChart('topP15Down', p15Down, {
+        direction: 'down',
+        limit: 10,
+        title: 'Top 10 Downregulated (P15)'
+      });
+
+      // P30 Visualizations
+      createVolcanoPlot('volcanoPlotP30', spatialP30Data, {
+        title: 'P30: GAERS vs Wistar (1,079 DEGs)'
+      });
+
+      const p30Up = spatialP30Data.filter(g => g.regulation === 'up');
+      const p30Down = spatialP30Data.filter(g => g.regulation === 'down');
+
+      createTopDEGsBarChart('topP30Up', p30Up, {
+        direction: 'up',
+        limit: 10,
+        title: 'Top 10 Upregulated (P30)'
+      });
+
+      createTopDEGsBarChart('topP30Down', p30Down, {
+        direction: 'down',
+        limit: 10,
+        title: 'Top 10 Downregulated (P30)'
+      });
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

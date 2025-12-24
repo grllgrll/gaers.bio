@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GAERS Epilepsy Research - Spatiotemporal Transcriptomic Analysis of Epileptogenesis">
+  <meta name="keywords" content="GAERS, epilepsy, transcriptomics, RNA-seq, 10X Genomics, spatial transcriptomics">
+  <meta name="author" content="Özkan Özdemir">
+  <title>GAERS Epilepsy Research | Home</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>GAERS Epilepsy Research</h1>
+      <p>Spatiotemporal Transcriptomic Analysis of Epileptogenesis</p>
+      <p class="hero-funding">Funded by TÜBİTAK Project 122S431</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <!-- Stats Dashboard -->
+      <section>
+        <h2 class="text-center">Research Overview</h2>
+        <div class="grid grid-4 mt-3">
+          <div class="stat-card card">
+            <span class="stat-number">593</span>
+            <span class="stat-label">Bulk RNA-seq DEGs</span>
+          </div>
+          <div class="stat-card card">
+            <span class="stat-number">1,079</span>
+            <span class="stat-label">Spatial P15 DEGs</span>
+          </div>
+          <div class="stat-card card">
+            <span class="stat-number">2,007</span>
+            <span class="stat-label">Seizure Genes</span>
+          </div>
+          <div class="stat-card card">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Spatial Samples</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Highlights -->
+      <section>
+        <h2>Key Findings</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Developmental Changes</h3>
+            </div>
+            <div class="card-body">
+              <p>Comprehensive analysis revealed <strong>593 differentially expressed genes</strong> between pre-seizure (P15) and seizure-onset (P30) stages in the GAERS model, with 94.4% showing upregulation.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Synaptic Organization</h3>
+            </div>
+            <div class="card-body">
+              <p>Strong enrichment in <strong>synaptic plasticity and postsynaptic density organization</strong> pathways, indicating critical circuit refinement during the epileptogenic window.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Calcium Signaling</h3>
+            </div>
+            <div class="card-body">
+              <p>Dysregulation of <strong>calcium homeostasis and ion channel</strong> genes, including T-type calcium channels critical for absence seizure generation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Cards -->
+      <section>
+        <h2>Explore the Data</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">10X Genomics Spatial Transcriptomics</h3>
+            </div>
+            <div class="card-body">
+              <p>Explore spatial gene expression patterns in GAERS vs Wistar control rats at postnatal days 15 and 30 using 10X Visium technology.</p>
+              <ul>
+                <li>8 spatial samples (P15 & P30)</li>
+                <li>1,079+ differentially expressed genes per comparison</li>
+                <li>Cell type-specific markers</li>
+                <li>Spatial organization analysis</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="spatial-transcriptomics.html" class="btn btn-primary btn-block">View Spatial Data →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">LCM/Bulk RNA-seq Analysis</h3>
+            </div>
+            <div class="card-body">
+              <p>Differential expression analysis comparing Ga30 (seizure-onset) vs Ga15 (pre-seizure) developmental stages using laser capture microdissection and bulk RNA-seq.</p>
+              <ul>
+                <li>593 significant DEGs</li>
+                <li>560 upregulated, 33 downregulated</li>
+                <li>GO & Reactome pathway enrichment</li>
+                <li>Interactive visualizations</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="bulk-rnaseq.html" class="btn btn-primary btn-block">View RNA-seq Data →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Interactive Gene Search</h3>
+            </div>
+            <div class="card-body">
+              <p>Search and filter genes across all datasets. Find genes by symbol, ID, or description with advanced filtering options.</p>
+              <ul>
+                <li>Search 3,611 genes</li>
+                <li>Filter by dataset and regulation</li>
+                <li>Sortable results table</li>
+                <li>Export to CSV</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="gene-search.html" class="btn btn-primary btn-block">Search Genes →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Methods & Protocols</h3>
+            </div>
+            <div class="card-body">
+              <p>Detailed documentation of experimental protocols, bioinformatics pipelines, and quality control metrics.</p>
+              <ul>
+                <li>LCM tissue collection</li>
+                <li>10X Visium workflow</li>
+                <li>DESeq2 & Limma analysis</li>
+                <li>Enrichment analysis methods</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="methods.html" class="btn btn-primary btn-block">View Methods →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Loupe Browser Section -->
+      <section>
+        <div class="card" style="border: 3px solid #0066cc; background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);">
+          <div class="card-header" style="background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); color: white; border: none;">
+            <h2 class="card-title" style="color: white; margin: 0;">Advanced Spatial Analysis with Loupe Browser</h2>
+            <p style="color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0; font-size: 1rem;">Unlock the full power of spatial transcriptomics</p>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h3 style="color: #0066cc;">Interactive Spatial Exploration</h3>
+                <p>Download our .cloupe files to explore GAERS spatial transcriptomics data with 10X Genomics Loupe Browser desktop application:</p>
+                <ul style="line-height: 1.8;">
+                  <li><strong>Query 20,000+ Genes:</strong> Visualize any gene's spatial expression pattern</li>
+                  <li><strong>Interactive Tissue Maps:</strong> Overlay gene expression on H&E histology images</li>
+                  <li><strong>Custom Analysis:</strong> Draw regions, perform differential expression, discover clusters</li>
+                  <li><strong>Publication Quality:</strong> Export high-resolution figures for your research</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="card" style="background: white; border: 2px solid #0d6efd;">
+                  <div class="card-body">
+                    <h4 style="color: #0066cc; margin-top: 0;">Available Datasets</h4>
+                    <div style="margin-bottom: 1rem;">
+                      <div style="padding: 0.75rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #0d6efd; margin-bottom: 0.75rem;">
+                        <strong style="color: #0d6efd;">P15 Pre-Seizure</strong>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;">Before seizure onset (ga2p15_2) - 275 MB</p>
+                      </div>
+                      <div style="padding: 0.75rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #198754;">
+                        <strong style="color: #198754;">P30 Seizure-Onset</strong>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;">At absence seizure onset (ga1p30_2) - 328 MB</p>
+                      </div>
+                    </div>
+                    <a href="spatial-transcriptomics.html#loupe-download" class="btn btn-primary btn-block">
+                      Download .cloupe Files →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-2" style="border-left: 4px solid #0066cc; background: rgba(0, 102, 204, 0.05);">
+              <p style="margin: 0;"><strong>Hybrid Approach:</strong> Our website provides fast, pre-computed visualizations for quick exploration. For in-depth spatial analysis, custom gene queries, and publication-ready figures, use Loupe Browser with our downloadable .cloupe files.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section>
+        <div class="alert alert-info">
+          <h3>About GAERS Model</h3>
+          <p>The <strong>Genetic Absence Epilepsy Rats from Strasbourg (GAERS)</strong> is a well-established genetic model for studying absence epilepsy. These rats spontaneously develop spike-and-wave discharges (SWDs) characteristic of absence seizures, providing insights into epileptogenesis mechanisms and potential therapeutic targets.</p>
+          <p><a href="about.html">Learn more about GAERS →</a></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>GAERS Research</h4>
+          <p>Spatiotemporal Transcriptomic Analysis of Epileptogenesis in GAERS Model</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Principal Investigator:<br><strong>Özkan Özdemir</strong></p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-compact-details">
+          <p>
+            <strong>Institution:</strong> Acıbadem Mehmet Ali Aydınlar University |
+            <strong>Duration:</strong> 2022-2025 |
+            <strong>Funding:</strong> TÜBİTAK 1001 Program (Project No: 122S431)
+          </p>
+          <p>
+            <strong>Principal Investigator:</strong> Özkan Özdemir (Acıbadem Mehmet Ali Aydınlar University, Faculty of Medicine) |
+            <strong>Researchers:</strong> Filiz Onat (Acıbadem Mehmet Ali Aydınlar University, Faculty of Medicine),
+            Nihan Çarçak Yılmaz (Istanbul University, Faculty of Pharmacy, Department of Pharmacology)
+          </p>
+          <p>
+            <strong>Consultant:</strong> Uğur Özbek (İzmir Biotechnology and Genome Center) |
+            <strong>Research Fellow:</strong> Eylül Aydın (Acıbadem Mehmet Ali Aydınlar University, Institute of Health Sciences, Department of Translational Medicine)
+          </p>
+        </div>
+        <div class="footer-copyright">
+          <p>&copy; 2025 GAERS Epilepsy Research. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Navigation Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detailed experimental and computational methods for GAERS transcriptomic research">
+  <meta name="keywords" content="methods, protocols, RNA-seq, spatial transcriptomics, GAERS, DESeq2">
+  <title>Methods & Protocols | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html" class="active">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Methods & Protocols</h1>
+      <p>Experimental and Computational Approaches</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Overview -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Overview</h2>
+          </div>
+          <div class="card-body">
+            <p>This page provides detailed methodology for the spatiotemporal transcriptomic analysis of epileptogenesis in the GAERS model. Our approach combines two complementary transcriptomic technologies to map gene expression changes during the critical window when GAERS rats transition from seizure-free to seizure-prone states.</p>
+
+            <div class="grid grid-2 mt-2">
+              <div class="card" style="background: #f8f9fa;">
+                <div class="card-body">
+                  <h4>Experimental Methods</h4>
+                  <ul>
+                    <li>Animal model and tissue preparation</li>
+                    <li>Laser capture microdissection (LCM)</li>
+                    <li>10X Genomics Visium spatial transcriptomics</li>
+                    <li>RNA sequencing</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card" style="background: #f8f9fa;">
+                <div class="card-body">
+                  <h4>Computational Methods</h4>
+                  <ul>
+                    <li>Quality control and preprocessing</li>
+                    <li>Differential expression analysis</li>
+                    <li>Pathway enrichment analysis</li>
+                    <li>Data visualization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experimental Methods -->
+      <section>
+        <h2>Experimental Methods</h2>
+
+        <!-- Animal Model -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Animal Model & Tissue Preparation</h3>
+          </div>
+          <div class="card-body">
+            <h4>GAERS Model</h4>
+            <p><strong>Genetic Absence Epilepsy Rats from Strasbourg (GAERS)</strong> is a well-established genetic model for absence epilepsy. GAERS rats spontaneously develop spike-and-wave discharge (SWD) seizures starting around postnatal day 30 (P30).</p>
+
+            <h4 class="mt-2">Experimental Design</h4>
+            <ul>
+              <li><strong>Time Points:</strong>
+                <ul>
+                  <li><strong>P15 (Pre-seizure):</strong> Before onset of seizure activity - developmental baseline</li>
+                  <li><strong>P30 (Seizure-onset):</strong> At the onset of absence seizures</li>
+                </ul>
+              </li>
+              <li><strong>Brain Regions:</strong> Thalamocortical circuits (cortex and thalamus)</li>
+              <li><strong>Sample Handling:</strong> Rapid tissue collection, snap-freezing in liquid nitrogen, storage at -80°C</li>
+            </ul>
+
+            <div class="alert alert-info mt-2">
+              <strong>Rationale:</strong> Comparing P15 (pre-seizure) and P30 (seizure-onset) captures the critical epileptogenic window - the molecular changes underlying the transition to a seizure-prone brain.
+            </div>
+          </div>
+        </div>
+
+        <!-- LCM & Bulk RNA-seq -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Laser Capture Microdissection (LCM) & Bulk RNA-seq</h3>
+          </div>
+          <div class="card-body">
+            <h4>LCM Protocol</h4>
+            <p>Laser capture microdissection enables precise isolation of specific cell populations from heterogeneous tissue sections.</p>
+
+            <ol>
+              <li><strong>Tissue Sectioning:</strong> 10 μm cryosections mounted on PEN membrane slides</li>
+              <li><strong>Rapid Staining:</strong> Cresyl violet staining (30 seconds) to visualize tissue architecture</li>
+              <li><strong>Laser Capture:</strong> Region-specific cell capture using LCM system</li>
+              <li><strong>RNA Extraction:</strong> Immediate lysis and RNA extraction from captured cells</li>
+            </ol>
+
+            <h4 class="mt-3">Library Preparation & Sequencing</h4>
+            <ul>
+              <li><strong>Library Kit:</strong> Takara SMARTer Stranded Total RNA-Seq Kit v3 - Pico Input Mammalian
+                <ul>
+                  <li>Optimized for low-input samples (250 pg - 10 ng total RNA)</li>
+                  <li>Ribosomal RNA depletion</li>
+                  <li>Strand-specific library construction</li>
+                </ul>
+              </li>
+              <li><strong>Sequencing Platform:</strong> Illumina sequencing
+                <ul>
+                  <li>Paired-end sequencing (2 × 150 bp)</li>
+                  <li>Target depth: ~30-40 million reads per sample</li>
+                </ul>
+              </li>
+              <li><strong>Sample Size:</strong>
+                <ul>
+                  <li>Ga15 (P15): n = 2 biological replicates</li>
+                  <li>Ga30 (P30): n = 5 biological replicates</li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="alert alert-info mt-2">
+              <strong>Advantages:</strong> High sensitivity, deep sequencing coverage, precise spatial resolution at cellular level.
+            </div>
+          </div>
+        </div>
+
+        <!-- 10X Visium Spatial -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">10X Genomics Visium Spatial Transcriptomics</h3>
+          </div>
+          <div class="card-body">
+            <h4>Visium Spatial Gene Expression Platform</h4>
+            <p>The Visium platform captures transcriptome-wide gene expression while preserving tissue architecture, enabling spatial mapping of gene expression patterns.</p>
+
+            <h4 class="mt-2">Protocol Overview</h4>
+            <ol>
+              <li><strong>Tissue Preparation:</strong>
+                <ul>
+                  <li>Fresh-frozen tissue embedded in OCT compound</li>
+                  <li>10 μm cryosections placed directly on Visium slides</li>
+                  <li>Tissue permeabilization to release mRNA</li>
+                </ul>
+              </li>
+              <li><strong>Library Construction:</strong>
+                <ul>
+                  <li>mRNA capture on spatially barcoded oligonucleotides</li>
+                  <li>Reverse transcription and cDNA synthesis</li>
+                  <li>Illumina-compatible library preparation</li>
+                </ul>
+              </li>
+              <li><strong>Sequencing & Imaging:</strong>
+                <ul>
+                  <li>High-resolution brightfield H&E imaging for tissue architecture</li>
+                  <li>Next-generation sequencing (Illumina)</li>
+                  <li>Target depth: ~50,000 reads per spot</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h4 class="mt-3">Platform Specifications</h4>
+            <ul>
+              <li><strong>Spot Size:</strong> 55 μm diameter (~10 cells per spot)</li>
+              <li><strong>Spot Spacing:</strong> 100 μm center-to-center</li>
+              <li><strong>Total Spots:</strong> ~5,000 per capture area</li>
+              <li><strong>Genes Detected:</strong> Typically 5,000-10,000 genes per tissue section</li>
+            </ul>
+
+            <h4 class="mt-3">Sample Information</h4>
+            <ul>
+              <li><strong>Total Samples:</strong> n = 8 (4 at P15, 4 at P30)</li>
+              <li><strong>Sample IDs:</strong>
+                <ul>
+                  <li>P15: GA1, GA2, WH1, WH3</li>
+                  <li>P30: GA1, GA2, WH1, WH2</li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="alert alert-info mt-2">
+              <strong>Advantages:</strong> Unbiased whole-transcriptome profiling, spatial context preserved, enables discovery of region-specific expression patterns.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Computational Methods -->
+      <section>
+        <h2>Computational Methods</h2>
+
+        <!-- QC & Preprocessing -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Quality Control & Preprocessing</h3>
+          </div>
+          <div class="card-body">
+            <h4>Bulk RNA-seq Pipeline</h4>
+            <ol>
+              <li><strong>Raw Read QC:</strong> FastQC for read quality assessment</li>
+              <li><strong>Adapter Trimming:</strong> Trimmomatic or Cutadapt</li>
+              <li><strong>Read Alignment:</strong> STAR aligner to Rattus norvegicus reference genome (Rnor_6.0/rn6)</li>
+              <li><strong>Gene Quantification:</strong> FeatureCounts or HTSeq for read counting</li>
+              <li><strong>Quality Metrics:</strong>
+                <ul>
+                  <li>Mapping rate > 80%</li>
+                  <li>Uniquely mapped reads > 70%</li>
+                  <li>Genes detected (≥10 reads) > 10,000</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h4 class="mt-3">Spatial Transcriptomics Pipeline</h4>
+            <ol>
+              <li><strong>Space Ranger:</strong> 10X Genomics official pipeline
+                <ul>
+                  <li>FASTQ processing and alignment</li>
+                  <li>Tissue detection and spot assignment</li>
+                  <li>UMI counting and gene expression matrix generation</li>
+                </ul>
+              </li>
+              <li><strong>Seurat:</strong> R package for spatial data analysis
+                <ul>
+                  <li>Data normalization (SCTransform)</li>
+                  <li>Dimensionality reduction (PCA, UMAP)</li>
+                  <li>Spatial clustering and visualization</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Differential Expression -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Differential Expression Analysis</h3>
+          </div>
+          <div class="card-body">
+            <h4>Bulk RNA-seq: DESeq2</h4>
+            <p><strong>DESeq2</strong> (Love et al., 2014) is the gold standard for differential expression analysis of count data.</p>
+
+            <ul>
+              <li><strong>Normalization:</strong> Median-of-ratios method to account for library size and composition</li>
+              <li><strong>Dispersion Estimation:</strong> Gene-wise and shrinkage estimation</li>
+              <li><strong>Statistical Testing:</strong> Wald test for pairwise comparisons (Ga30 vs Ga15)</li>
+              <li><strong>Multiple Testing Correction:</strong> Benjamini-Hochberg FDR adjustment</li>
+              <li><strong>Significance Thresholds:</strong>
+                <ul>
+                  <li>Adjusted p-value (padj) < 0.1</li>
+                  <li>|log2 Fold Change| > 0.5</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4 class="mt-3">Spatial Transcriptomics: Seurat/Limma</h4>
+            <ul>
+              <li><strong>Normalization:</strong> SCTransform for spatial data</li>
+              <li><strong>Statistical Testing:</strong> Wilcoxon rank-sum test or limma-voom</li>
+              <li><strong>Spatial Context:</strong> Consideration of spatial dependencies</li>
+              <li><strong>Significance Thresholds:</strong>
+                <ul>
+                  <li>Adjusted p-value < 0.1</li>
+                  <li>|log2 Fold Change| > 0.5</li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="alert alert-info mt-2">
+              <strong>Result:</strong> 593 DEGs from bulk RNA-seq, 1,079 DEGs per timepoint comparison from spatial data.
+            </div>
+          </div>
+        </div>
+
+        <!-- Enrichment Analysis -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Pathway Enrichment Analysis</h3>
+          </div>
+          <div class="card-body">
+            <h4>Gene Ontology (GO) Enrichment</h4>
+            <p>Functional enrichment analysis using <strong>clusterProfiler</strong> R package (Yu et al., 2012).</p>
+
+            <ul>
+              <li><strong>Input:</strong> List of differentially expressed genes (up or downregulated)</li>
+              <li><strong>Background:</strong> All genes detected in the experiment</li>
+              <li><strong>Ontology Categories:</strong>
+                <ul>
+                  <li>Biological Process (BP)</li>
+                  <li>Molecular Function (MF)</li>
+                  <li>Cellular Component (CC)</li>
+                </ul>
+              </li>
+              <li><strong>Statistical Test:</strong> Hypergeometric test with Benjamini-Hochberg correction</li>
+              <li><strong>Significance Threshold:</strong> Adjusted p-value < 0.05</li>
+            </ul>
+
+            <h4 class="mt-3">Reactome Pathway Analysis</h4>
+            <p>Pathway enrichment using the <strong>Reactome</strong> database.</p>
+            <ul>
+              <li>Curated biological pathways</li>
+              <li>Focus on molecular mechanisms and signaling cascades</li>
+              <li>Complementary to GO enrichment</li>
+            </ul>
+
+            <h4 class="mt-3">Key Enriched Pathways</h4>
+            <div class="grid grid-2 mt-2">
+              <div>
+                <p><strong>Synaptic Function:</strong></p>
+                <ul>
+                  <li>Postsynaptic density organization</li>
+                  <li>Regulation of synaptic plasticity</li>
+                  <li>Cell junction maintenance</li>
+                </ul>
+              </div>
+              <div>
+                <p><strong>Ion Channels & Signaling:</strong></p>
+                <ul>
+                  <li>Calcium homeostasis</li>
+                  <li>IP3 signaling pathway</li>
+                  <li>Voltage-gated ion channels</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Visualization -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Visualization</h3>
+          </div>
+          <div class="card-body">
+            <h4>Visualization Tools</h4>
+            <ul>
+              <li><strong>R:</strong>
+                <ul>
+                  <li>ggplot2 for publication-quality figures</li>
+                  <li>EnhancedVolcano for volcano plots</li>
+                  <li>pheatmap for heatmaps</li>
+                  <li>Seurat for spatial plots</li>
+                </ul>
+              </li>
+              <li><strong>Web Visualization:</strong>
+                <ul>
+                  <li>Chart.js for interactive plots on gaers.bio</li>
+                  <li>Custom JavaScript for gene search and filtering</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4 class="mt-3">Plot Types</h4>
+            <div class="grid grid-3 mt-2">
+              <div class="card" style="background: #f8f9fa;">
+                <div class="card-body">
+                  <h5>Volcano Plots</h5>
+                  <p>Visualize differential expression (log2FC vs -log10 p-value)</p>
+                </div>
+              </div>
+              <div class="card" style="background: #f8f9fa;">
+                <div class="card-body">
+                  <h5>Bar Charts</h5>
+                  <p>Top upregulated and downregulated genes</p>
+                </div>
+              </div>
+              <div class="card" style="background: #f8f9fa;">
+                <div class="card-body">
+                  <h5>Dot Plots</h5>
+                  <p>GO enrichment results (gene ratio, p-value, gene count)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Software & Resources -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Software & Resources</h2>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div>
+                <h4>Core Analysis Tools</h4>
+                <ul>
+                  <li><strong>R (v4.0+):</strong> Statistical computing and graphics</li>
+                  <li><strong>DESeq2:</strong> Differential expression analysis</li>
+                  <li><strong>Seurat:</strong> Spatial transcriptomics analysis</li>
+                  <li><strong>clusterProfiler:</strong> Functional enrichment</li>
+                  <li><strong>Space Ranger:</strong> 10X Genomics spatial pipeline</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Reference Databases</h4>
+                <ul>
+                  <li><strong>Genome:</strong> Rattus norvegicus Rnor_6.0 (rn6)</li>
+                  <li><strong>Annotation:</strong> Ensembl gene annotations</li>
+                  <li><strong>GO Database:</strong> Gene Ontology Consortium</li>
+                  <li><strong>Reactome:</strong> Pathway database</li>
+                  <li><strong>Seizure Genes:</strong> Human Phenotype Ontology (HP:0001250)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Availability -->
+      <section>
+        <div class="alert alert-info">
+          <h3>Data Availability</h3>
+          <p>All processed data, gene expression matrices, and differential expression results are freely available on this website.</p>
+          <div class="mt-2">
+            <a href="downloads.html" class="btn btn-primary">Download Data →</a>
+            <a href="gene-search.html" class="btn btn-secondary">Search Genes →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

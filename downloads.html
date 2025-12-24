@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download GAERS transcriptomic datasets - bulk RNA-seq, spatial transcriptomics, and gene databases">
+  <meta name="keywords" content="downloads, GAERS data, RNA-seq, spatial transcriptomics, CSV, JSON">
+  <title>Downloads | gaers.bio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="index.html" class="nav-brand">gaers.bio</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+        <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+        <li><a href="gene-search.html">Gene Search</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="downloads.html" class="active">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Data Downloads</h1>
+      <p>Access Complete Transcriptomic Datasets</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Overview -->
+      <section>
+        <div class="alert alert-info">
+          <h3>Data Availability</h3>
+          <p>All processed transcriptomic data from this project are freely available for download. The datasets are provided in both JSON and CSV formats for easy integration into your analysis pipelines.</p>
+          <p class="mt-2"><strong>Please cite this resource if you use the data in your research.</strong>
+          <a href="publications.html" class="btn btn-sm btn-secondary">Citation Information →</a></p>
+        </div>
+      </section>
+
+      <!-- Bulk RNA-seq Data -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Bulk RNA-seq Dataset</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>Differential Expression Analysis: Ga30 vs Ga15</strong></p>
+            <p>Laser capture microdissection (LCM) based bulk RNA-seq comparing seizure-onset (P30) to pre-seizure (P15) stages.</p>
+
+            <div class="grid grid-2 mt-2">
+              <div>
+                <h4>Dataset Details</h4>
+                <ul>
+                  <li><strong>Total Genes:</strong> 593 differentially expressed genes</li>
+                  <li><strong>Upregulated:</strong> 560 genes (94.4%)</li>
+                  <li><strong>Downregulated:</strong> 33 genes (5.6%)</li>
+                  <li><strong>Criteria:</strong> padj < 0.1, |log2FC| > 0.5</li>
+                  <li><strong>Analysis:</strong> DESeq2</li>
+                </ul>
+              </div>
+              <div>
+                <h4>File Information</h4>
+                <ul>
+                  <li><strong>Format:</strong> JSON</li>
+                  <li><strong>Fields:</strong> symbol, name, ensembl_id, log2fc, padj, regulation</li>
+                  <li><strong>Size:</strong> ~150 KB</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <a href="assets/data/rnaseq-degs.json" download class="btn btn-primary">
+                Download Bulk RNA-seq DEGs (JSON)
+              </a>
+              <a href="gene-search.html" class="btn btn-secondary">
+                Search & Export Custom Dataset →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spatial Transcriptomics Data -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Spatial Transcriptomics Datasets</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>10X Genomics Visium Spatial Gene Expression</strong></p>
+            <p>Spatially-resolved transcriptomics from thalamocortical tissue at two developmental timepoints.</p>
+
+            <!-- P15 Dataset -->
+            <div class="card mt-2" style="background: #f8f9fa;">
+              <div class="card-body">
+                <h4>Spatial Transcriptomics - P15 (Pre-seizure)</h4>
+                <div class="grid grid-2 mt-2">
+                  <div>
+                    <h5>Dataset Details</h5>
+                    <ul>
+                      <li><strong>Total DEGs:</strong> 1,079 genes</li>
+                      <li><strong>Upregulated:</strong> 509 genes (47.2%)</li>
+                      <li><strong>Downregulated:</strong> 570 genes (52.8%)</li>
+                      <li><strong>Samples:</strong> 4 (GA1, GA2, WH1, WH3)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>File Information</h5>
+                    <ul>
+                      <li><strong>Format:</strong> JSON</li>
+                      <li><strong>Fields:</strong> symbol, name, ensembl_id, log2fc, adj_p_val, regulation</li>
+                      <li><strong>Size:</strong> ~300 KB</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <a href="assets/data/spatial-p15-degs.json" download class="btn btn-primary">
+                    Download Spatial P15 DEGs (JSON)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- P30 Dataset -->
+            <div class="card mt-2" style="background: #f8f9fa;">
+              <div class="card-body">
+                <h4>Spatial Transcriptomics - P30 (Seizure-onset)</h4>
+                <div class="grid grid-2 mt-2">
+                  <div>
+                    <h5>Dataset Details</h5>
+                    <ul>
+                      <li><strong>Total DEGs:</strong> 1,079 genes</li>
+                      <li><strong>Upregulated:</strong> 565 genes (52.4%)</li>
+                      <li><strong>Downregulated:</strong> 514 genes (47.6%)</li>
+                      <li><strong>Samples:</strong> 4 (GA1, GA2, WH1, WH2)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>File Information</h5>
+                    <ul>
+                      <li><strong>Format:</strong> JSON</li>
+                      <li><strong>Fields:</strong> symbol, name, ensembl_id, log2fc, adj_p_val, regulation</li>
+                      <li><strong>Size:</strong> ~300 KB</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <a href="assets/data/spatial-p30-degs.json" download class="btn btn-primary">
+                    Download Spatial P30 DEGs (JSON)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spatial Transcriptomics CSV Summaries -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Spatial Transcriptomics CSV Summaries</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>Quick-access CSV files for top differentially expressed genes</strong></p>
+            <p>Pre-generated CSV summary files containing the top 25 upregulated and top 25 downregulated genes by absolute log2 fold change for each spatial transcriptomics timepoint.</p>
+
+            <div class="grid grid-3 mt-2">
+              <!-- P15 CSV -->
+              <div class="card" style="border: 2px solid #0d6efd; background: #f8f9fa;">
+                <div class="card-header" style="background: #0d6efd; color: white;">
+                  <h3 style="color: white; margin: 0; font-size: 1.1rem;">P15 Top DEGs</h3>
+                </div>
+                <div class="card-body">
+                  <h5>Dataset Details</h5>
+                  <ul style="font-size: 0.9rem;">
+                    <li><strong>Genes:</strong> 50 (25 up, 25 down)</li>
+                    <li><strong>Timepoint:</strong> Postnatal day 15</li>
+                    <li><strong>Status:</strong> Pre-seizure</li>
+                    <li><strong>Size:</strong> 4.2 KB</li>
+                  </ul>
+                  <h5 class="mt-2">Columns</h5>
+                  <p style="font-size: 0.85rem;">Symbol, Gene_Name, logFC, Average_Expression, t_Statistic, P_Value, Adjusted_P_Value, Regulation</p>
+                  <div class="mt-2">
+                    <a href="downloads/spatial/spatial-p15-top-degs.csv" download class="btn btn-primary btn-sm btn-block">
+                      Download P15 CSV
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- P30 CSV -->
+              <div class="card" style="border: 2px solid #198754; background: #f8f9fa;">
+                <div class="card-header" style="background: #198754; color: white;">
+                  <h3 style="color: white; margin: 0; font-size: 1.1rem;">P30 Top DEGs</h3>
+                </div>
+                <div class="card-body">
+                  <h5>Dataset Details</h5>
+                  <ul style="font-size: 0.9rem;">
+                    <li><strong>Genes:</strong> 50 (25 up, 25 down)</li>
+                    <li><strong>Timepoint:</strong> Postnatal day 30</li>
+                    <li><strong>Status:</strong> Seizure-onset</li>
+                    <li><strong>Size:</strong> 4.5 KB</li>
+                  </ul>
+                  <h5 class="mt-2">Columns</h5>
+                  <p style="font-size: 0.85rem;">Symbol, Gene_Name, logFC, Average_Expression, t_Statistic, P_Value, Adjusted_P_Value, Regulation</p>
+                  <div class="mt-2">
+                    <a href="downloads/spatial/spatial-p30-top-degs.csv" download class="btn btn-success btn-sm btn-block">
+                      Download P30 CSV
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Summary Statistics CSV -->
+              <div class="card" style="border: 2px solid #6c757d; background: #f8f9fa;">
+                <div class="card-header" style="background: #6c757d; color: white;">
+                  <h3 style="color: white; margin: 0; font-size: 1.1rem;">Summary Statistics</h3>
+                </div>
+                <div class="card-body">
+                  <h5>Dataset Details</h5>
+                  <ul style="font-size: 0.9rem;">
+                    <li><strong>Comparisons:</strong> P15 & P30</li>
+                    <li><strong>Metrics:</strong> DEG counts, percentages</li>
+                    <li><strong>Purpose:</strong> Quick overview</li>
+                    <li><strong>Size:</strong> 0.2 KB</li>
+                  </ul>
+                  <h5 class="mt-2">Columns</h5>
+                  <p style="font-size: 0.85rem;">Timepoint, Total_DEGs, Upregulated, Downregulated, Percent_Up, Percent_Down, Mean_logFC</p>
+                  <div class="mt-2">
+                    <a href="downloads/spatial/spatial-summary-statistics.csv" download class="btn btn-secondary btn-sm btn-block">
+                      Download Summary CSV
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <h4 style="margin-top: 0;">CSV Format Notes</h4>
+              <ul style="margin-bottom: 0;">
+                <li><strong>Delimiter:</strong> Comma (,) - standard CSV format</li>
+                <li><strong>Headers:</strong> First row contains column names</li>
+                <li><strong>logFC:</strong> Log2 fold change (positive = upregulated, negative = downregulated)</li>
+                <li><strong>Regulation:</strong> "Up" or "Down" for easy filtering</li>
+                <li><strong>Sorted by:</strong> Absolute log2 fold change (highest to lowest)</li>
+              </ul>
+            </div>
+
+            <div class="alert" style="background: #fff3cd; border-left: 4px solid #ffc107; margin-top: 1rem;">
+              <h4 style="margin-top: 0;">Need the complete datasets?</h4>
+              <p>These CSV files contain only the top 50 genes per timepoint. For complete datasets with all 1,079 genes:</p>
+              <ul style="margin-bottom: 0.5rem;">
+                <li>Download the full JSON files above (P15 & P30 sections)</li>
+                <li>Use the <a href="gene-search.html">Gene Search Tool</a> to export custom filtered datasets</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Loupe Browser Files -->
+      <section>
+        <div class="card" style="border: 2px solid #0066cc;">
+          <div class="card-header" style="background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); color: white; border: none;">
+            <h2 class="card-title" style="color: white; margin: 0;">10X Genomics Loupe Browser Files</h2>
+            <p style="color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">Interactive spatial transcriptomics analysis platform</p>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2 mb-2">
+              <div>
+                <h4>What's Included</h4>
+                <p>Download .cloupe files for advanced interactive analysis in 10X Genomics Loupe Browser desktop application:</p>
+                <ul>
+                  <li>Full spatial transcriptome data (~20,000 genes)</li>
+                  <li>H&E tissue images with spatial coordinates</li>
+                  <li>Gene expression matrices</li>
+                  <li>Clustering and annotation data</li>
+                  <li>Interactive visualization capabilities</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Requirements</h4>
+                <ul>
+                  <li><strong>Software:</strong> 10X Genomics Loupe Browser (free download)</li>
+                  <li><strong>OS:</strong> Windows, macOS, or Linux</li>
+                  <li><strong>RAM:</strong> 8 GB minimum, 16 GB recommended</li>
+                  <li><strong>Disk Space:</strong> ~1 GB for both files</li>
+                </ul>
+                <p class="mt-2">
+                  <a href="spatial-transcriptomics.html#loupe-download" class="btn btn-secondary btn-sm">Installation Guide →</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- P15 Loupe File -->
+            <div class="card loupe-download-card mt-2" style="border: 2px solid #0d6efd;">
+              <div class="card-header" style="background: #0d6efd; color: white;">
+                <h3 style="color: white; margin: 0;">P15 Pre-Seizure - Loupe Browser File</h3>
+              </div>
+              <div class="card-body">
+                <div class="grid grid-2">
+                  <div>
+                    <h5>Sample Metadata</h5>
+                    <ul>
+                      <li><strong>Sample ID:</strong> ga2p15_2</li>
+                      <li><strong>Phenotype:</strong> Pre-seizure baseline</li>
+                      <li><strong>Timepoint:</strong> Postnatal day 15 (P15)</li>
+                      <li><strong>Description:</strong> Before seizure onset</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>File Information</h5>
+                    <ul>
+                      <li><strong>Filename:</strong> GAERS_P15_PreSeizure.cloupe</li>
+                      <li><strong>Size:</strong> <span class="file-size-badge">275 MB</span></li>
+                      <li><strong>Platform:</strong> 10X Genomics Visium</li>
+                      <li><strong>Spots:</strong> ~5,000 spatial barcodes</li>
+                      <li><strong>Genes:</strong> ~20,000 detected</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <a href="https://drive.google.com/file/d/1ujUJ4zSJZgmn5PPJk45QYYta4ecx1oXD/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    Download P15 Loupe File (275 MB)
+                  </a>
+                </div>
+                <details class="mt-2">
+                  <summary style="cursor: pointer; font-weight: 500;">MD5 Checksum for file verification</summary>
+                  <code style="display: block; background: #f8f9fa; padding: 0.5rem; margin-top: 0.5rem; border-radius: 4px; font-size: 0.875rem; word-break: break-all;">75165a5804a3ccfffa72af6f1232de4f</code>
+                </details>
+              </div>
+            </div>
+
+            <!-- P30 Loupe File -->
+            <div class="card loupe-download-card mt-2" style="border: 2px solid #198754;">
+              <div class="card-header" style="background: #198754; color: white;">
+                <h3 style="color: white; margin: 0;">P30 Seizure-Onset - Loupe Browser File</h3>
+              </div>
+              <div class="card-body">
+                <div class="grid grid-2">
+                  <div>
+                    <h5>Sample Metadata</h5>
+                    <ul>
+                      <li><strong>Sample ID:</strong> ga1p30_2</li>
+                      <li><strong>Phenotype:</strong> Seizure-onset</li>
+                      <li><strong>Timepoint:</strong> Postnatal day 30 (P30)</li>
+                      <li><strong>Description:</strong> At onset of absence seizures</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>File Information</h5>
+                    <ul>
+                      <li><strong>Filename:</strong> GAERS_P30_SeizureOnset.cloupe</li>
+                      <li><strong>Size:</strong> <span class="file-size-badge">328 MB</span></li>
+                      <li><strong>Platform:</strong> 10X Genomics Visium</li>
+                      <li><strong>Spots:</strong> ~5,000 spatial barcodes</li>
+                      <li><strong>Genes:</strong> ~20,000 detected</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <a href="https://drive.google.com/file/d/1yRrnQY6dW2Wz53MnALFaFQyRyCN2D5Yu/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-success">
+                    Download P30 Loupe File (328 MB)
+                  </a>
+                </div>
+                <details class="mt-2">
+                  <summary style="cursor: pointer; font-weight: 500;">MD5 Checksum for file verification</summary>
+                  <code style="display: block; background: #f8f9fa; padding: 0.5rem; margin-top: 0.5rem; border-radius: 4px; font-size: 0.875rem; word-break: break-all;">011b9ca08f1b38f4e8bc3b9de6193f03</code>
+                </details>
+              </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="alert alert-info mt-2">
+              <h4 style="margin-top: 0;">Getting Started</h4>
+              <ol style="margin-bottom: 0;">
+                <li><strong>Download Loupe Browser</strong> from <a href="https://www.10xgenomics.com/support/software/loupe-browser/downloads" target="_blank" rel="noopener noreferrer">10X Genomics website</a> (free, Windows/macOS/Linux)</li>
+                <li><strong>Download .cloupe files</strong> using the buttons above</li>
+                <li><strong>Open in Loupe Browser</strong> and start exploring spatial gene expression</li>
+                <li><strong>Analyze interactively:</strong> Query any gene, draw custom regions, perform differential expression</li>
+              </ol>
+              <p class="mt-2" style="margin-bottom: 0;">
+                <a href="spatial-transcriptomics.html#loupe-download" class="btn btn-primary btn-sm">Complete Installation Guide & Tutorials →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enrichment Analysis Data -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Pathway Enrichment Analysis</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>GO & Reactome Enrichment Results</strong></p>
+            <p>Functional enrichment analysis of differentially expressed genes using Gene Ontology and Reactome pathways.</p>
+
+            <div class="grid grid-2 mt-2">
+              <div>
+                <h4>Dataset Details</h4>
+                <ul>
+                  <li><strong>Total Terms:</strong> 43 enriched pathways</li>
+                  <li><strong>Categories:</strong> Biological Process, Molecular Function, Reactome</li>
+                  <li><strong>Criteria:</strong> p.adjust < 0.05</li>
+                  <li><strong>Analysis:</strong> clusterProfiler</li>
+                </ul>
+              </div>
+              <div>
+                <h4>File Information</h4>
+                <ul>
+                  <li><strong>Format:</strong> JSON</li>
+                  <li><strong>Fields:</strong> description, gene_ratio, p_adjust, gene_count, category</li>
+                  <li><strong>Size:</strong> ~50 KB</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <a href="assets/data/enrichment-data.json" download class="btn btn-primary">
+                Download Enrichment Results (JSON)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gene Master Index -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Gene Master Index</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>Comprehensive Gene Database Across All Datasets</strong></p>
+            <p>Integrated database containing all 3,611 unique genes from bulk RNA-seq, spatial transcriptomics, and seizure gene annotations.</p>
+
+            <div class="grid grid-2 mt-2">
+              <div>
+                <h4>Database Details</h4>
+                <ul>
+                  <li><strong>Total Genes:</strong> 3,611 unique genes</li>
+                  <li><strong>Bulk RNA-seq:</strong> 593 genes</li>
+                  <li><strong>Spatial P15:</strong> 1,079 genes</li>
+                  <li><strong>Spatial P30:</strong> 1,079 genes</li>
+                  <li><strong>Seizure Genes:</strong> 2,007 genes</li>
+                </ul>
+              </div>
+              <div>
+                <h4>File Information</h4>
+                <ul>
+                  <li><strong>Format:</strong> JSON</li>
+                  <li><strong>Fields:</strong> symbol, name, ensembl_id, chromosome, datasets, expression data</li>
+                  <li><strong>Size:</strong> ~1 MB</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-2">
+              <strong>Note:</strong> This master index integrates data from all sources. Each gene entry contains differential expression data from all datasets where the gene was detected.
+            </div>
+
+            <div class="mt-3">
+              <a href="assets/data/gene-master-index.json" download class="btn btn-primary">
+                Download Gene Master Index (JSON)
+              </a>
+              <a href="gene-search.html" class="btn btn-secondary">
+                Interactive Gene Search →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Format Documentation -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Data Format Documentation</h2>
+          </div>
+          <div class="card-body">
+            <h3>JSON File Structure</h3>
+            <p>All JSON files follow a consistent structure for easy parsing and integration.</p>
+
+            <!-- DEG Files -->
+            <div class="mt-2">
+              <h4>Differential Expression Files (DEG)</h4>
+              <div class="code-block">
+                <div class="code-wrapper">
+                  <pre><code>{
+  "genes": [
+    {
+      "symbol": "Cacna1g",
+      "name": "calcium voltage-gated channel subunit alpha1 G",
+      "ensembl_id": "ENSRNOG00000018056",
+      "log2fc": 1.234,
+      "padj": 0.001,
+      "regulation": "up",
+      "significant": true
+    },
+    ...
+  ]
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enrichment Files -->
+            <div class="mt-3">
+              <h4>Enrichment Analysis Files</h4>
+              <div class="code-block">
+                <div class="code-wrapper">
+                  <pre><code>{
+  "enrichment": {
+    "biological_process": [
+      {
+        "description": "postsynaptic density organization",
+        "gene_ratio": "25/560",
+        "p_adjust": 0.00012,
+        "gene_count": 25,
+        "genes": "Gene1/Gene2/Gene3/..."
+      },
+      ...
+    ]
+  }
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gene Master Index -->
+            <div class="mt-3">
+              <h4>Gene Master Index</h4>
+              <div class="code-block">
+                <div class="code-wrapper">
+                  <pre><code>{
+  "genes": [
+    {
+      "symbol": "Cacna1g",
+      "name": "calcium voltage-gated channel subunit alpha1 G",
+      "ensembl_id": "ENSRNOG00000018056",
+      "chromosome": "1",
+      "seizure_gene": true,
+      "bulk_rnaseq": {
+        "log2fc": 1.234,
+        "adj_p_val": 0.001,
+        "regulation": "up"
+      },
+      "spatial_p15": {
+        "log2fc": 0.987,
+        "adj_p_val": 0.005,
+        "regulation": "up"
+      },
+      "spatial_p30": null
+    },
+    ...
+  ]
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="mt-3">Working with the Data</h3>
+            <div class="grid grid-2 mt-2">
+              <div>
+                <h4>Python Example</h4>
+                <div class="code-block">
+                  <div class="code-wrapper">
+                    <pre><code>import json
+import pandas as pd
+
+# Load JSON data
+with open('rnaseq-degs.json') as f:
+    data = json.load(f)
+
+# Convert to DataFrame
+df = pd.DataFrame(data['genes'])
+
+# Filter upregulated genes
+up_genes = df[df['regulation'] == 'up']</code></pre>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4>R Example</h4>
+                <div class="code-block">
+                  <div class="code-wrapper">
+                    <pre><code>library(jsonlite)
+
+# Load JSON data
+data <- fromJSON("rnaseq-degs.json")
+
+# Extract genes
+genes_df <- data$genes
+
+# Filter upregulated genes
+up_genes <- genes_df[genes_df$regulation == "up", ]</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Data Export -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Custom Data Export</h2>
+          </div>
+          <div class="card-body">
+            <p>For customized datasets tailored to your research needs, use our interactive gene search tool.</p>
+
+            <h4 class="mt-2">Features:</h4>
+            <ul>
+              <li><strong>Search & Filter:</strong> Find genes by symbol, name, or Ensembl ID</li>
+              <li><strong>Advanced Filtering:</strong> Filter by regulation, p-value, fold change, datasets</li>
+              <li><strong>CSV Export:</strong> Download filtered results as CSV with all metadata</li>
+              <li><strong>Interactive:</strong> Sort, paginate, and explore data before downloading</li>
+            </ul>
+
+            <div class="alert alert-info mt-2">
+              <strong>Example Use Cases:</strong>
+              <ul>
+                <li>Export only upregulated genes with |log2FC| > 2</li>
+                <li>Get seizure-related genes present in bulk RNA-seq</li>
+                <li>Download genes enriched in specific GO pathways</li>
+                <li>Create custom gene lists for pathway analysis</li>
+              </ul>
+            </div>
+
+            <div class="mt-3">
+              <a href="gene-search.html" class="btn btn-primary">
+                Open Gene Search Tool →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage & Citation -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Data Usage & Citation</h2>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-info">
+              <h4>Please Cite This Resource</h4>
+              <p>If you use data from gaers.bio in your research, please cite:</p>
+              <div class="card mt-2" style="background: white; padding: 1rem;">
+                <p style="font-family: 'Georgia', serif;">
+                  Özdemir, Ö. (2025). <em>gaers.bio: Spatiotemporal Transcriptomic Analysis of Epileptogenesis in the GAERS Model.</em>
+                  TÜBİTAK Project 122S431. Available at: https://gaers.bio
+                </p>
+              </div>
+              <div class="mt-2">
+                <a href="publications.html" class="btn btn-primary">Full Citation Information →</a>
+              </div>
+            </div>
+
+            <h4 class="mt-3">Terms of Use</h4>
+            <ul>
+              <li>Data are freely available for academic and research purposes</li>
+              <li>Proper attribution is required when using the data</li>
+              <li>For commercial use, please contact the PI</li>
+              <li>Redistribution is permitted with proper attribution</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>gaers.bio</h4>
+          <p>GAERS Epilepsy Research Data Portal</p>
+          <p>TÜBİTAK Project 122S431</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Data</h4>
+          <ul style="list-style: none;">
+            <li><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+            <li><a href="bulk-rnaseq.html">Bulk RNA-seq</a></li>
+            <li><a href="gene-search.html">Gene Search</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul style="list-style: none;">
+            <li><a href="about.html">About GAERS</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="publications.html">Publications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>PI: Özkan Özdemir</p>
+          <p>Funding: TÜBİTAK 122S431</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 gaers.bio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+
+    // Code block styling
+    document.querySelectorAll('.code-block').forEach(block => {
+      block.style.position = 'relative';
+      block.style.background = '#f8f9fa';
+      block.style.padding = '1rem';
+      block.style.borderRadius = '4px';
+      block.style.border = '1px solid #dee2e6';
+      block.style.marginTop = '0.5rem';
+    });
+  </script>
+</body>
+</html>
