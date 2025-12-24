@@ -188,6 +188,15 @@ $RECYCLE.BIN/
 *.h5ad
 *.loom
 
+# Development and testing files
+DEVELOPMENT.md
+TESTING-REPORT.md
+
+# Local server start scripts (user-specific)
+start.bat
+start.command
+start.sh
+
 # Backup files
 *.backup
 *.old
